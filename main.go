@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/LuanSilveiraSouza/cnvrtr/ascii"
+	"github.com/LuanSilveiraSouza/cnvrtr/base64"
 )
 
 func main() {
-	a := ascii.Encode("Hello")
-	b := ascii.Decode([]byte{97, 95})
-	fmt.Println(a, b)
+	a := base64.Encode("meudeusdoceu")
+
+	fmt.Println(a)
 }
