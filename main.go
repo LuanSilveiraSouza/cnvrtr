@@ -1,13 +1,9 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/LuanSilveiraSouza/cnvrtr/base64"
+	"github.com/LuanSilveiraSouza/cnvrtr/cmd"
 )
 
 func main() {
-	a := base64.Encode("YWJj")
-
-	fmt.Println(a)
+	cmd.Execute()
 }
