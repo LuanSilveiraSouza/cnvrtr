@@ -55,6 +55,60 @@ func Encode(value string) string {
 		break
 	}
 
-
 	return base64chars
+}
+
+func Decode(value string) string {
+	var base64binaries []string
+
+	for _, v := range value {
+		if v != '=' {
+			binary := strconv.FormatInt(int64(arrayFind(v, characters)), 2)
+
+			if len(binary) < 6 {
+				var zeros string
+
+				for j := 0; j < 6-len(binary); j++ {
+					zeros = zeros + "0"
+				}
+
+				binary = zeros + binary
+			}
+
+			base64binaries = append(base64binaries, binary)
+		}
+	}
+	binaries := strings.Join(base64binaries[:], "")
+
+	var octectBinaries []string
+
+	for i := 0; i < len(binaries); i += 8 {
+		if len(binaries)-i > 8 {
+			octectBinaries = append(octectBinaries, binaries[i:i+8])
+		} else {
+			octectBinaries = append(octectBinaries, binaries[i:])
+		}
+	}
+
+	var asciiCharacters string
+
+	for _, v := range octectBinaries {
+		value, err := strconv.ParseInt(v, 2, 64)
+
+		if err == nil {
+			asciiCharacters += string(value)
+		}
+	}
+
+	return asciiCharacters
+}
+
+func arrayFind(value rune, array []string) int {
+	for i := range array {
+		if array[i] == string(value) || string(value) == " " && array[i] == "+" {
+			return i
+		}
+	}
+
+	return -1
 }

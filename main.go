@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	a := base64.Encode("meudeusdoceu")
+	a := base64.Encode("YWJj")
 
 	fmt.Println(a)
 }
