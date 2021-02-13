@@ -5,11 +5,12 @@ import (
 	"fmt"
 
 	"github.com/LuanSilveiraSouza/cnvrtr/converters/ascii"
+	"github.com/atotto/clipboard"
 	"github.com/spf13/cobra"
 )
 
 func init() {
-  rootCmd.AddCommand(asciiCmd)
+	rootCmd.AddCommand(asciiCmd)
 }
 
 var asciiCmd = &cobra.Command{
@@ -24,14 +25,23 @@ var asciiCmd = &cobra.Command{
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 		mode, _ := cmd.Flags().GetBool("decode")
+		var result string
+
 		if mode {
 			var value string
 			for _, v := range args {
 				value += v + " "
 			}
-			fmt.Println(ascii.Decode(value))
+			result = ascii.Decode(value)
 		} else {
-			fmt.Println(ascii.Encode(args[0]))
+			result = string(ascii.Encode(args[0]))
+		}
+		fmt.Println(result)
+
+		copy, _ := cmd.Flags().GetBool("clipboard")
+
+		if copy {
+			clipboard.WriteAll(result)
 		}
 	},
 }

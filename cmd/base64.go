@@ -5,11 +5,12 @@ import (
 	"fmt"
 
 	"github.com/LuanSilveiraSouza/cnvrtr/converters/base64"
+	"github.com/atotto/clipboard"
 	"github.com/spf13/cobra"
 )
 
 func init() {
-  rootCmd.AddCommand(base64Cmd)
+	rootCmd.AddCommand(base64Cmd)
 }
 
 var base64Cmd = &cobra.Command{
@@ -24,10 +25,19 @@ var base64Cmd = &cobra.Command{
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 		mode, _ := cmd.Flags().GetBool("decode")
+		var result string
+		
 		if mode {
-			fmt.Println(base64.Decode(args[0]))
+			result = base64.Decode(args[0])
 		} else {
-			fmt.Println(base64.Encode(args[0]))
+			result = base64.Encode(args[0])
+		}
+		fmt.Println(result)
+
+		copy, _ := cmd.Flags().GetBool("clipboard")
+
+		if copy {
+			clipboard.WriteAll(result)
 		}
 	},
 }
