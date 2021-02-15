@@ -1,4 +1,4 @@
-<h1 style="display:flex;align-items:center;justify-content:center;">
+<h1 align="center" style="display:flex;align-items:center;justify-content:center;">
 <img alt="Logo" src="./.github/logo.png"/>
 CNVRTR
 </h1>
