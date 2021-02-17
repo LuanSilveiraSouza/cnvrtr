@@ -20,7 +20,8 @@ CNVRTR
 # :pushpin: Sumary
 
 * [Introduction](#paperclip-introduction)
-* [How to Run](#rocket-how-to-run)
+* [Setup and Instalation](#computer-setup-and-instalation)
+* [How to Use](#rocket-how-to-use)
 * [Bugs and Issues](#bug-bugs-and-issues)
 * [Contributing](#man_mechanic-contributing)
 * [License](#books-license)
@@ -29,7 +30,7 @@ CNVRTR
 
 CNVRTR is a Command Line Interface written in Golang to convert mainly plain text to another encoding formats and vice-versa.
 
-# :rocket: Setup and Instalation
+# :computer: Setup and Instalation
 
 ```bash
 # Clone Repository
@@ -47,7 +48,7 @@ $ go install
 
 It is recommended that you use ```go install``` to access the cli in whatever place of your machine.
 
-# :computer: How to use
+# :rocket: How to use
 
 ```bash
 # To get all commands:

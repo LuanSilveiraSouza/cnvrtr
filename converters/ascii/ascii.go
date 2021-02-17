@@ -1,6 +1,7 @@
 package ascii
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -11,16 +12,22 @@ func Encode(value string) string {
 	for _, v := range []rune(value) {
 		bytes += " "+strconv.Itoa(int(v))
 	}
-	return bytes
+	return strings.TrimSpace(bytes)
 }
 
 func Decode(value string) string {
 	var bytes string
 
-	for _, v := range strings.Split(value[:len(value) - 1], ",") {
-		intV, _ := strconv.ParseInt(v, 10, 64)
-		bytes += string(intV)
+	for _, v := range strings.Split(strings.TrimSpace(value), ",") {
+		intV, err := strconv.ParseInt(v, 10, 64)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(intV)
+		bytes += string(rune(intV))
 	}
+
 
 	return bytes
 }
