@@ -41,7 +41,11 @@ var asciiCmd = &cobra.Command{
 		copy, _ := cmd.Flags().GetBool("clipboard")
 
 		if copy {
-			clipboard.WriteAll(result)
+			err := clipboard.WriteAll("" + result)
+
+			if err != nil {
+				fmt.Println(err)
+			}
 		}
 	},
 }

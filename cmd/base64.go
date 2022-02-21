@@ -26,7 +26,7 @@ var base64Cmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		mode, _ := cmd.Flags().GetBool("decode")
 		var result string
-		
+
 		if mode {
 			result = base64.Decode(args[0])
 		} else {
@@ -37,7 +37,11 @@ var base64Cmd = &cobra.Command{
 		copy, _ := cmd.Flags().GetBool("clipboard")
 
 		if copy {
-			clipboard.WriteAll(result)
+			err := clipboard.WriteAll("" + result)
+
+			if err != nil {
+				fmt.Println(err)
+			}
 		}
 	},
 }
